@@ -13,7 +13,10 @@ jobs:
       uses: actions/setup-go@v5
       with:
         go-version: 1.22.x
-        cache: True
+        cache: true
+        cache-dependency-path: |
+          **/go.mod
+          **/go.sum
 
     - name: Run Go command
       run: go version
