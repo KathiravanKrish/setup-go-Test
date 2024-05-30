@@ -1,0 +1,17 @@
+name: Go Workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        cache: true
+        cache-dependency-path: |
+          **/go.mod
+          **/go.sum
