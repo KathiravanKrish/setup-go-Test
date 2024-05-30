@@ -1,22 +1,24 @@
-name: Go Workflow
+name: Your Workflow
 
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
     - name: Setup Go
       uses: actions/setup-go@v5
       with:
-        go-version: 1.22.x
+        go-version: 1.22x
         cache: true
-        
-- name: Download Go modules
-  run: go mod download
- working-directory: ./path/to/your/go/project
+        cache-dependency-path: |
+          **/go.mod
+          **/go.sum
+          
+    - name: Build
+      run: go build -v ./...
 
-    # Rest of your steps...
+    # other job steps...
