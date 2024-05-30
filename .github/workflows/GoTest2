@@ -8,10 +8,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Download Go Modules
+      run: go mod download
+
     - name: Setup Go
       uses: actions/setup-go@v5
       with:
-        cache: false
+        cache: true
         cache-dependency-path: |
           **/go.mod
           **/go.sum
+
+    # Add any other steps your workflow needs
