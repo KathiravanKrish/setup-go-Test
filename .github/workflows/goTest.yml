@@ -8,6 +8,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    
+    - name: Create Go package directory
+      run: mkdir -p /home/runner/go/pkg/mod
+
 
     - name: Setup Go
       uses: actions/setup-go@v5
