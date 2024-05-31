@@ -24,6 +24,7 @@ jobs:
             
       - name: Install Dependencies
         run: go mod download
+        working-directory: ./path-to-your-module
 
       - name: Build
         run: go build -v ./...
