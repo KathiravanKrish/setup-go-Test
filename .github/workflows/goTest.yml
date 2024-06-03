@@ -9,14 +9,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Ensure Go cache directory exists
-        run: mkdir -p ${{ runner.temp }}/go/pkg/mod
-        shell: bash
-
-      - name: Setup Go with cache
-        uses: actions/setup-go@v2
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.22.x'
           cache: true
-          cache-dependency-path: '**/go.mod **/go.sum'
-          cache-path: ${{ runner.temp }}/go/pkg/mod
+          cache-dependency-path: |
+            **/go.mod
+            **/go.sum
