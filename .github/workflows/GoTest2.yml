@@ -7,28 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v2
         with:
-          go-version: '1.22.x'
+          go-version: 1.17
 
-      - name: Cache Go Modules
+      - name: Go mod cache
         uses: actions/cache@v2
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-            
-      - name: Install Dependencies
+
+      - name: Install dependencies
         run: go mod download
-        working-directory: ./path-to-your-module
 
-      - name: Build
-        run: go build -v ./...
-
-      # Add any other steps you need for your workflow. For example, run tests:
-      # - name: Test
-      #   run: go test -v ./...
+      # Add additional steps for building/testing your project here
