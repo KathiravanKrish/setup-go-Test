@@ -13,7 +13,7 @@ jobs:
         run: rm -rf ${{ github.workspace }}/../../../go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.4.linux-amd64
 
       - name: Extract tar file
-        run: /usr/bin/tar -xf /usr/bin/tar
+        run: /usr/bin/tar -xf /setup-go-Test
 
       - name: Setup Go
         uses: actions/setup-go@v5
