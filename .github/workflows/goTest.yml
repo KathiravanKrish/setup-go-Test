@@ -9,10 +9,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Clear Specific Directory
-      run: rm -rf test3.yml
-      working-directory: ${{ github.workspace }}
-
     - name: Setup Go
       uses: actions/setup-go@v5
       with:
