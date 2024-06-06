@@ -6,27 +6,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Clear Go dependencies directory
-      run: rm -rf ${{ github.workspace }}/go/pkg/mod
+      - name: Clear conflicting directory
+        run: rm -rf ${{ github.workspace }}/../../../go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.4.linux-amd64
 
-    - name: Cache Go dependencies
-      uses: actions/cache@v2
-      with:
-        path: ${{ github.workspace }}/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
+      - name: Extract tar file
+        run: /usr/bin/tar -xf /usr/bin/tar
 
-    - name: Setup Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: 1.22.x
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x
+          cache: true
+          cache-dependency-path: |
+            **/go.mod
+            **/go.sum
 
-    - name: Download dependencies
-      run: go mod download
-
-    - name: Run Go command
-      run: go version
+      - name: Run Go command
+        run: go version
